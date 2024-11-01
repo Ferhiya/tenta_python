@@ -12,6 +12,12 @@ class programmerare:
             return True
         else:
             return False
+    
+    def hacka(self,laptop):
+        self._is_hacking=True
+        laptop.get_hacked(self._smeknamn)
+        self._is_hacking=False
+        
 
     def is_hacking(self):
         if self._is_hacking == True:
@@ -21,25 +27,19 @@ class programmerare:
          
 class laptop:
     def __init__(self,laptop,tillverkningsår,skärmstorlek,batteritid):
-        self.laptop=laptop
+        self._laptop=laptop
         self._tillverkningsår=tillverkningsår
         self._skärmstorlek=skärmstorlek
         self._batteritid=batteritid
         self._blivit_hackad=False
                  
-     
-    def hacka(self,laptop):
-        self._is_hacking=True
-        laptop.get_hacked()
-        self._is_hacking=False
-        
         
     def är_hacked(self):
         return self._blivit_hackad
                 
             
-    def get_hacked(self,laptop_modell):
-        kan_du_hacka=input(f"Kan du hacka {laptop_modell}")
+    def get_hacked(self,programerare):
+        kan_du_hacka=input(f"Kan du hacka {self._laptop}")
         kan_du_hacka.lower()
         if kan_du_hacka == "ja" and self._is_hacking == True:
             self._blivit_hackad=True
@@ -49,5 +49,6 @@ class laptop:
 
 Programmerare=programmerare("Linda_lzzo","Python",["Router","iphone","Samsung","hp"])  
 Laptop=laptop("hp",2012,24,12)
+
 res=Laptop.är_hacked()
 print(f"Kan jag hacka {res}")
